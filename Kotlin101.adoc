@@ -217,4 +217,5 @@ The Kotlin standard library makes heavy use of extension functions over JDK clas
  * Easy delegation
  * Infix methods
  * Domain specific language
+ * Tail recursion
  * ...
