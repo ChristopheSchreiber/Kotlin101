@@ -7,7 +7,7 @@ Java developer since 2005
 
 Member of Softeam's Java Startech :logo:
 
-image:http://marketingland.com/wp-content/ml-loads/2012/06/twitter-logo-2012-new.png[Twitter] @Schreiber_Chris
+image:http://marketingland.com/wp-content/ml-loads/2012/06/twitter-logo-2012-new.png[Twitter, 32, 32] @Schreiber_Chris
 
 == What is Kotlin
 
