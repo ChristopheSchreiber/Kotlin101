@@ -22,8 +22,14 @@ Kotlin is meant to be:
  * Safe
  * Interoperable
 
+Kotlin allows to compile code to:
+
+ * JVM's Bytecode
+ * Javascript
+ * Native
+ 
 == Why is everybody talking about Kotlin ?
- * Because of Java 9 ? :troll:
+ * Because of Java 9 ? image:http://orig15.deviantart.net/d060/f/2012/154/f/5/troll_face_pixel_icon_by_rocketshipbabe-d5257wc.png[Trollface,32,32]
  * Because of its support in Android
  * Because it's good !
  
