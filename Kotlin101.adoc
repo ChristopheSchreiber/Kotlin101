@@ -1,29 +1,42 @@
 = Kotlin 101 for Java developers
+// classic AsciiDoctor attributes
+:icons: font
+:imagesdir: images
+// Despite the warning of the documentation, https://github.com/asciidoctor/asciidoctor-reveal.js, highlight.js syntax highlighting WORKS, BUT, you need to explicitly set the highlighter using the below attribute
+// see http://discuss.asciidoctor.org/Highlighting-source-code-for-reveal-js-backend-td2750.html
+:source-highlighter: highlightjs
+// reveal.js attributes
+:customcss: styles/myCustomCSS.css
 
 == Who am I ?
 
-Christophe SCHREIBER
+*Christophe SCHREIBER*
+
 Java developer since 2005
 
-Member of Softeam's Java Startech :logo:
+Member of Softeam's *Java Startech* image:startech-logo.png[width=150,link="images/startech-logo.png"]
 
-image:http://marketingland.com/wp-content/ml-loads/2012/06/twitter-logo-2012-new.png[Twitter, 32, 32] https://twitter.com/Schreiber_Chris[@Schreiber_Chris]
+image:twitter.png[Twitter, 64, 64] https://twitter.com/Schreiber_Chris[@Schreiber_Chris]
+
+image:github.png[Github, 64] https://github.com/ChristopheSchreiber[ChristopheSchreiber]
 
 == What is Kotlin
 
-Kotlin is an opensource language developed by Jetbrains, running on the JVM.
+[%step]
+ * Kotlin is an opensource language developed by Jetbrains, *running on the JVM*
+ * Kotlin mixes elements from *object oriented and functional programming*
 
-Kotlin mixes elements from object oriented and functional programming.
+== Kotlin is meant to be:
 
-Kotlin is meant to be:
+[%step]
+ * *Pragmatic*
+ * *Concise*
+ * *Safe*
+ * *Interoperable*
 
- * Pragmatic
- * Concise
- * Safe
- * Interoperable
+== Kotlin allows to compile code to:
 
-Kotlin allows to compile code to:
-
+[%step]
  * JVM's Bytecode
  * Javascript
  * Native
@@ -66,16 +79,18 @@ val immutable = 1
 var mutable = 2
 println(mutable)
 ....
->> 2
+ 2
 ....
 mutable = 3
 println(mutable)
 ....
->> 3
+ 3
 ....
 immutable = 4
 ....
->> error (TODO)
+ error: val cannot be reassigned +
+ immutable = 4 +
+ ^
 
 == Avoiding overloaded methods
 
@@ -85,25 +100,25 @@ fun sayHello(val name : String, val message = "") = println("Hello ${name} ${mes
 
 sayHello("World")
 ....
->> Hello World
+ Hello World
 ....
 sayHello("World", ", Kotlin is great")
 ....
->> Hello World, Kotlin is great
+ Hello World, Kotlin is great
 
 == String templates are awesome
 ....
 fun sayHello(name : String) = println("Hello ${name}")
 sayHello("Softeam")
 ....
->> Hello Softeam
+ Hello Softeam
 
 String templates can contain actual code
 ....
 fun shoutHello(name : String) = println("Hello ${name.toUpperCase()} !")
 shoutHello("Softeam")
 ....
->> Hello SOFTEAM !
+ Hello SOFTEAM !
 
 == Avoiding the billion dollars mistake
 
@@ -111,9 +126,11 @@ Kotlin ensures that most cases of null references are detected by the compiler
 
 By default, all references are non nullable
 ....
-val name = null
+val name : String = null
 ....
->> error (TODO)
+ error: null can not be a value of a non-null type String +
+ val name : String = null
+
 
 == Usage of nullable references
 
