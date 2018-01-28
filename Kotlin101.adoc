@@ -47,17 +47,19 @@ image:github.png[Github, 64] https://github.com/ChristopheSchreiber[ChristopheSc
  * Because it's good !
  
 == Saying Hello World in Kotlin
+Kotlin code doesn't have to be stored in a class.
+
+But if you want to directly call statements, you have to use script files (*.kts) instead of regular *.kt files
 ....
 println("Hello World")
 ....
 
-Kotlin code doesn't have to be stored in a class.
-
-== Defining a function in Kotlin
+== Defining a function in Kotlin is fun
+The full syntax of function definition is :
 ....
 fun sayHello() : Unit { println("Hello World") }
 ....
-or
+or you can shorten it thanks to type inference and expression body
 ....
 fun sayHello() = println("Hello World")
 ....
@@ -71,9 +73,17 @@ can be simplified to
 ....
 val myInteger = 1
 ....
+It avoids redundency that can be found in Java
+....
+StringBuilder sb = new StringBuilder()
+....
+Kotlin version is simpler, because type is infered and the new keyword is not necessaryS
+....
+val sb = StringBuilder()
+....
 
 == Can my variable change ?
-Kotlin enforces you to specify if variables are final or not. 
+Kotlin enforces you to specify if variables are final or not by using either val (value) or var (variable)
 ....
 val immutable = 1
 var mutable = 2
@@ -92,20 +102,6 @@ immutable = 4
  immutable = 4 +
  ^
 
-== Avoiding overloaded methods
-
-Kotlin offers default parameter values, so that you don't need to overload methods when you need an extra parameter.
-....
-fun sayHello(val name : String, val message = "") = println("Hello ${name} ${message}")
-
-sayHello("World")
-....
- Hello World
-....
-sayHello("World", ", Kotlin is great")
-....
- Hello World, Kotlin is great
-
 == String templates are awesome
 ....
 fun sayHello(name : String) = println("Hello ${name}")
@@ -119,6 +115,21 @@ fun shoutHello(name : String) = println("Hello ${name.toUpperCase()} !")
 shoutHello("Softeam")
 ....
  Hello SOFTEAM !
+
+
+== Avoiding overloaded methods
+
+Kotlin offers default parameter values, so that you don't need to overload methods when you need an extra parameter.
+....
+fun sayHello(val name : String, val message = "") = println("Hello ${name} ${message}")
+
+sayHello("World")
+....
+ Hello World
+....
+sayHello("World", ", Kotlin is great")
+....
+ Hello World, Kotlin is great
 
 == Avoiding the billion dollars mistake
 
@@ -158,22 +169,6 @@ And the Elvis operator allows usage of a default value otherwise :
 println(name?.length ?: 0)
 ....
 
-== Safe casts
-When you check if an instance is of a given type, Kotlin automatically converts to the correct type in case of success, avoiding a redundant cast.
-....
-val value : Any = methodReturningAnyType()
-if (value is String) {
-	println(value.toUpperCase()
-}
-....
-
-You can also directly cast using the as operator and specify a default value if the cast fails
-....
-val value : Any = methodReturningAnyType()
-val stringValue : String? = value.as? String ?: null
-println(stringValue?.toUpperCase)
-....
-
 == Data classes without boilerplate code
 
 Kotlin allows defining data classes very simply
@@ -189,6 +184,23 @@ println(me.firstName)
 ....
 >> Christophe
 ...
+
+
+== Safe casts
+When you check if an instance is of a given type, Kotlin automatically converts to the correct type in case of success, avoiding a redundant cast.
+....
+val value : Any = methodReturningAnyType()
+if (value is String) {
+	println(value.toUpperCase()
+}
+....
+
+You can also directly cast using the as operator and specify a default value if the cast fails
+....
+val value : Any = methodReturningAnyType()
+val stringValue : String? = value.as? String ?: null
+println(stringValue?.toUpperCase)
+....
 
 == Using lambdas
 
@@ -234,11 +246,14 @@ The Kotlin standard library makes heavy use of extension functions over JDK clas
 
 == Conventions
 
+== Making recursion great again
+
+TODO : tail recursion example
+
 == And many more !
 
  * Lazy initialisation
  * Easy delegation
  * Infix methods
  * Domain specific language
- * Tail recursion
  * ...
