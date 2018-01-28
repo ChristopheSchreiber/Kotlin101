@@ -1,5 +1,3 @@
-package com.schreiber.kotlin101
-
 val immutable = 1
 var mutable = 2
 println(mutable)
