@@ -278,8 +278,8 @@ fun Int.factorial() : BigDecimal {
 }
 
 private tailrec fun recursiveFactorial(integer: BigDecimal, accumulator: BigDecimal): BigDecimal {
-    return when {
-        integer == BigDecimal.ZERO -> accumulator
+    return when(integer) {
+        BigDecimal.ZERO -> accumulator
         else -> recursiveFactorial(integer - BigDecimal.ONE, integer * accumulator)
     }
 }
