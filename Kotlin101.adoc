@@ -283,7 +283,10 @@ private tailrec fun recursiveFactorial(integer: BigDecimal, accumulator: BigDeci
         else -> recursiveFactorial(integer - BigDecimal.ONE, integer * accumulator)
     }
 }
+
+println(100000.factorial())
 ----
+ 2824229407960347874293421578024535518477494926[...]00000000000 (456574 digits !)
 
 == And many more !
 
