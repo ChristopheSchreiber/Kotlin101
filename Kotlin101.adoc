@@ -271,7 +271,7 @@ The Kotlin standard library makes heavy use of extension functions over JDK clas
 
 == Making recursion great again
 Contrarily to Java, Kotlin allows using tail recursion optimization by using the *tailrec* keyword :
-____
+----
 fun Int.factorial() : BigDecimal {
     if (this < 0 ) throw IllegalArgumentException("Factorial can only be applied to strictly positive integers, ${this} is invalid")
     return recursiveFactorial(BigDecimal(this), BigDecimal.ONE)
@@ -283,7 +283,8 @@ private tailrec fun recursiveFactorial(integer: BigDecimal, accumulator: BigDeci
         else -> recursiveFactorial(integer - BigDecimal.ONE, integer * accumulator)
     }
 }
-____
+----
+
 == And many more !
 
  * Lazy initialisation
