@@ -293,9 +293,50 @@ class OracleOrderRepository : OrderRepository {
 }
 ----
 
+== Declaring enumerated types
+Kotlin enums are very similar to Java's :
+----
+enum class PriceType {
+    PIECE, RATE, PERCENTAGE
+}
+----
+
 == The magic switch : when
+The *when* operator can be used in several ways.
+
+With enums, it allows checking that all possible values are covered:
+----
+val priceType = price.type
+when (priceType) {
+    PIECE -> [...]
+    RATE -> [...]
+}
+----
+TODO: ERROR
+
+=== Using when to check values on standard objects
+----
+val code = getStringCode()
+when (code) {
+   "foo" -> doFoo()
+   "bar" -> doBar()
+   else -> doSomethingElse()
+}
+----
+
+=== Avoiding return repetition in if statements
+You can also use *when* as a return statement :
+----
+fun isSmallList(list : List<String, maxSize : Int)
+return when {
+        list.isEmpty() -> "Empty !"
+        list.size <= maxSize -> "The size of the list is fine !"
+        else -> "List is too big"
+}
+----
 
 == Conventions
+TODO
 
 == Making recursion great again
 Contrarily to Java, Kotlin allows using tail recursion optimization by using the *tailrec* keyword :
