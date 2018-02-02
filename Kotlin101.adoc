@@ -183,6 +183,17 @@ And the Elvis operator allows usage of a default value otherwise :
 println(name?.length ?: 0)
 ----
 
+== Public visibility by default
+In Kotlin, default visibility is public, not package-private like in Java.
+Kotlin has 4 visibilities:
+[%step]
+* *public* (default)
+* *private*
+* *protected*
+* *internal*
+
+Internal visibility means your class in only visible in your module (Maven/Gradle module, project...).
+
 == Data classes without boilerplate code
 
 Kotlin allows defining data classes very simply
@@ -264,6 +275,23 @@ println("foo".addBar())
 The Kotlin standard library makes heavy use of extension functions over JDK classes.
 
 == Don't forget about OOP
+Interfaces are similar to Java : they can contain default implementations but no state
+----
+interface OrderRepository {
+fun findOrder(identifier : Int) : Order
+----
+
+== Implementing an interface or extending a class
+Kotlin makes no difference in the syntax when implementing an interface or extending a class.
+
+As in Java, a class can implement several interfaces but can extend only one class.
+
+You have to explictly declare that you are overriding a method.
+----
+class OracleOrderRepository : OrderRepository {
+    override fun findOrder(identifier : Int) : Order  = [...]
+}
+----
 
 == The magic switch : when
 
