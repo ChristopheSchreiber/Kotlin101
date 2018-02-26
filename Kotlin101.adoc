@@ -114,7 +114,8 @@ sayHello("Softeam")
 String templates can contain actual code
 [source]
 ----
-fun shoutHello(name : String) = println("Hello ${name.toUpperCase()} !")
+fun shoutHello(name : String) =
+    println("Hello ${name.toUpperCase()} !")
 shoutHello("Softeam")
 ----
  Hello SOFTEAM !
@@ -134,9 +135,11 @@ sayHello("World", ", Kotlin is great")
 ----
  Hello World, Kotlin is great
 
+== !
 You can also explicitly add the parameter name in any method call.
 ----
-sayHello(message = ", do you enjoy Kotlin", name = "everybody")
+sayHello(message = ", do you enjoy Kotlin",
+ name = "everybody")
 ----
  Hello everybody , do you enjoy Kotlin
 
@@ -190,9 +193,7 @@ Kotlin has 4 visibilities:
 * *public* (default)
 * *private*
 * *protected*
-* *internal*
-
-Internal visibility means your class in only visible in your module (Maven/Gradle module, project...).
+* *internal* (only visible in your module)
 
 == Data classes without boilerplate code
 
@@ -336,7 +337,24 @@ return when {
 ----
 
 == Conventions
-TODO
+Conventions are special method names that can be called using operators
+----
+data class Quantity(val value: BigDecimal) {
+   operator fun plus(other : Quantity) = Quantity(this.value + other.value)
+}
+val quantity1 = Quantity(100.0)
+val quantity2 = Quantity(10.0)
+println(quantity1 + quantity2)
+----
+ Quantity(value=110.0)
+
+==!
+Kotlin defines several conventions:
+[%step]
+* arithmetic operators : plus, minus,  times,  div, mod
+* arithmetic operators with assignment : plusAssign, minusAssign...
+* comparison operators: equals, compareTo
+
 
 == Making recursion great again
 Contrarily to Java, Kotlin allows using tail recursion optimization by using the *tailrec* keyword :
