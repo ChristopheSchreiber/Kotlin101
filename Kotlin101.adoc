@@ -126,7 +126,8 @@ shoutHello("Softeam")
 
 Kotlin offers default parameter values, so that you don't need to overload methods when you need an extra parameter.
 ----
-fun sayHello(name : String, message : String = "") = println("Hello ${name} ${message}")
+fun sayHello(name : String, message : String = "") =
+    println("Hello ${name} ${message}")
 sayHello("World")
 ----
  Hello World
@@ -227,15 +228,15 @@ When you check if an instance is of a given type, Kotlin automatically converts 
 ----
 val value : Any = methodReturningAnyType()
 if (value is String) {
-	println(value.toUpperCase()
+	println(value.toUpperCase())
 }
 ----
 
 You can also directly cast using the as operator and specify a default value if the cast fails
 ----
 val value : Any = methodReturningAnyType()
-val stringValue : String? = value.as? String ?: null
-println(stringValue?.toUpperCase)
+val stringValue : String = value as? String ?: "not a String"
+println(stringValue.toUpperCase())
 ----
 
 == Using lambdas
@@ -264,7 +265,8 @@ public void transformAndPrint(String message, Function<String, String> transform
 ----
 The equivalent Kotlin method would be :
 ----
-fun transformAndPrint(message : String, transform : (String) -> String) = println(transform(message))
+fun transformAndPrint(message : String,
+ transform : (String) -> String) = println(transform(message))
 ----
 
 == Extension functions
@@ -288,7 +290,7 @@ Kotlin makes no difference in the syntax when implementing an interface or exten
 
 As in Java, a class can implement several interfaces but can extend only one class.
 
-You have to explictly declare that you are overriding a method.
+You have to explicitly declare that you are overriding a method.
 ----
 class OracleOrderRepository : OrderRepository {
     override fun findOrder(identifier : Int) : Order  = [...]
@@ -314,12 +316,14 @@ when (priceType) {
     RATE -> [...]
 }
 ----
-TODO: ERROR
+ warning: 'when' expression on enum is recommended to be exhaustive, add 'PERCENTAGE' branch or 'else' branch instead
+ when (priceType) {
+ ^
 
-=== Using when to check values on standard objects
+=== Using when to assign values
 ----
 val code = getStringCode()
-when (code) {
+val mappedCode = when (code) {
    "foo" -> doFoo()
    "bar" -> doBar()
    else -> doSomethingElse()
@@ -361,7 +365,7 @@ Kotlin defines several conventions:
 Contrarily to Java, Kotlin allows using tail recursion optimization by using the *tailrec* keyword :
 ----
 fun Int.factorial() : BigDecimal {
-    if (this < 0 ) throw IllegalArgumentException("Factorial can only be applied to strictly positive integers, ${this} is invalid")
+    if (this < 0 ) throw IllegalArgumentException("Factorial can only be applied to positive integers, ${this} is invalid")
     return recursiveFactorial(BigDecimal(this), BigDecimal.ONE)
 }
 
@@ -383,3 +387,5 @@ println(100000.factorial())
  * Infix methods
  * Domain specific language
  * ...
+
+== Questions ?

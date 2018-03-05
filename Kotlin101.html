@@ -1,0 +1,228 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Kotlin 101 for Java developers</title><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui" name="viewport"><link href="reveal.js/css/reveal.css" rel="stylesheet"><link rel="stylesheet" href="reveal.js/css/theme/black.css" id="theme"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.min.css"><link href="reveal.js/lib/css/zenburn.css" rel="stylesheet"><script>var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? "reveal.js/css/print/pdf.css" : "reveal.js/css/print/paper.css";
+document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if lt IE 9]><script src="reveal.js/lib/js/html5shiv.js"></script><![endif]--><link rel="stylesheet" href="styles/myCustomCSS.css"></head><body><div class="reveal"><div class="slides"><section class="title" data-state="title"><h1>Kotlin 101 for Java developers</h1></section><section id="who_am_i"><h2>Who am I ?</h2><div class="paragraph"><p><strong>Christophe SCHREIBER</strong></p></div>
+<div class="paragraph"><p>Java developer since 2005</p></div>
+<div class="paragraph"><p>Member of Softeam&#8217;s <strong>Java Startech</strong> <span class="image"><img src="images/startech-logo.png" alt="Logo Startech"></span></p></div>
+<div class="paragraph"><p><span class="image"><img src="images/twitter.png" alt="Twitter" width="64" height="64"></span> <a href="https://twitter.com/Schreiber_Chris">@Schreiber_Chris</a></p></div>
+<div class="paragraph"><p><span class="image"><img src="images/github.png" alt="Github" width="64"></span> <a href="https://github.com/ChristopheSchreiber">ChristopheSchreiber</a></p></div></section>
+<section id="what_is_kotlin"><h2>What is Kotlin</h2><div class="ulist"><ul><li class="fragment"><p>Kotlin is an opensource language developed by Jetbrains, <strong>running on the JVM</strong></p></li><li class="fragment"><p>Kotlin mixes elements from <strong>object oriented and functional programming</strong></p></li></ul></div></section>
+<section id="kotlin_is_meant_to_be"><h2>Kotlin is meant to be:</h2><div class="ulist"><ul><li class="fragment"><p><strong>Pragmatic</strong></p></li><li class="fragment"><p><strong>Concise</strong></p></li><li class="fragment"><p><strong>Safe</strong></p></li><li class="fragment"><p><strong>Interoperable</strong></p></li></ul></div></section>
+<section id="kotlin_allows_to_compile_code_to"><h2>Kotlin allows to compile code to:</h2><div class="ulist"><ul><li class="fragment"><p>JVM&#8217;s Bytecode</p></li><li class="fragment"><p>Javascript</p></li><li class="fragment"><p>Native</p></li></ul></div></section>
+<section id="why_is_everybody_talking_about_kotlin"><h2>Why is everybody talking about Kotlin ?</h2><div class="ulist"><ul><li class="fragment"><p>Because of Java 9 ? <span class="image"><img src="http://orig15.deviantart.net/d060/f/2012/154/f/5/troll_face_pixel_icon_by_rocketshipbabe-d5257wc.png" alt="Trollface" width="32" height="32"></span></p></li><li class="fragment"><p>Because of its support in Android</p></li><li class="fragment"><p>Because it&#8217;s good !</p></li></ul></div></section>
+<section id="saying_hello_world_in_kotlin"><h2>Saying Hello World in Kotlin</h2><div class="paragraph"><p>Kotlin code doesn&#8217;t have to be stored in a class.</p></div>
+<div class="paragraph"><p>But if you want to directly call statements, you have to use script files (*.kts) instead of regular *.kt files</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>println("Hello World")</code></pre></div></div></section>
+<section id="defining_a_function_in_kotlin_is_fun"><h2>Defining a function in Kotlin is fun</h2><div class="paragraph"><p>The full syntax of function definition is :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun sayHello() : Unit { println("Hello World") }</code></pre></div></div>
+<div class="paragraph"><p>or you can shorten it thanks to type inference and expression body</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun sayHello() = println("Hello World")</code></pre></div></div></section>
+<section id="defining_variables"><h2>Defining variables</h2><div class="paragraph"><p>Kotlin&#8217;s type inference lets you omit the actual type of variables if the compiler can infer it</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val myInteger : Int = 1</code></pre></div></div>
+<div class="paragraph"><p>can be simplified to</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val myInteger = 1</code></pre></div></div>
+<div class="paragraph"><p>It avoids redundency that can be found in Java</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>StringBuilder sb = new StringBuilder()</code></pre></div></div>
+<div class="paragraph"><p>Kotlin version is simpler, because type is infered and the new keyword is not necessary</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val sb = StringBuilder()</code></pre></div></div></section>
+<section id="can_my_variable_change"><h2>Can my variable change ?</h2><div class="paragraph"><p>Kotlin enforces you to specify if variables are final or not by using either val (value) or var (variable)</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val immutable = 1
+var mutable = 2
+println(mutable)</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>2</pre></div></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>mutable = 3
+println(mutable)</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>3</pre></div></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>immutable = 4</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>error: val cannot be reassigned +
+immutable = 4 +
+^</pre></div></div></section>
+<section id="string_templates_are_awesome"><h2>String templates are awesome</h2><div class="paragraph"><p>Kotlin allows to user variables in String values using <strong>${&#8230;&#8203;}</strong> syntax</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun sayHello(name : String) = println("Hello ${name}")
+sayHello("Softeam")</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>Hello Softeam</pre></div></div>
+<div class="paragraph"><p>String templates can contain actual code</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun shoutHello(name : String) =
+    println("Hello ${name.toUpperCase()} !")
+shoutHello("Softeam")</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>Hello SOFTEAM !</pre></div></div></section>
+<section id="avoiding_overloaded_methods"><h2>Avoiding overloaded methods</h2><div class="paragraph"><p>Kotlin offers default parameter values, so that you don&#8217;t need to overload methods when you need an extra parameter.</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun sayHello(name : String, message : String = "") = println("Hello ${name} ${message}")
+sayHello("World")</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>Hello World</pre></div></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>sayHello("World", ", Kotlin is great")</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>Hello World, Kotlin is great</pre></div></div>
+<div class="paragraph"><p>You can also explicitly add the parameter name in any method call.</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>sayHello(message = ", do you enjoy Kotlin", name = "everybody")</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>Hello everybody , do you enjoy Kotlin</pre></div></div></section>
+<section id="avoiding_the_billion_dollars_mistake"><h2>Avoiding the billion dollars mistake</h2><div class="paragraph"><p>Kotlin ensures that most cases of null references are detected by the compiler.</p></div>
+<div class="paragraph"><p>By default, all references are non nullable.</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val name : String = null</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>error: null can not be a value of a non-null type String +
+val name : String = null</pre></div></div></section>
+<section id="usage_of_nullable_references"><h2>Usage of nullable references</h2><div class="paragraph"><p>Kotlin uses the ? character after the type definition to declare that a reference is nullable</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val name : String? = null</code></pre></div></div>
+<div class="paragraph"><p>When using nullable types, the compiler forces you to check for null references</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val name : String? = functionThatMayReturnNullStringReference()
+println(name.length)</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>println(name.length)error: only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type String?
+println(name.length)
+            ^</pre></div></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>if (name != null) {
+   println(name.length)
+}</code></pre></div></div>
+<div class="paragraph"><p>Kotlin defines a shorter way to check null reference :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>println(name?.length)</code></pre></div></div>
+<div class="paragraph"><p>And the Elvis operator allows usage of a default value otherwise :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>println(name?.length ?: 0)</code></pre></div></div></section>
+<section id="data_classes_without_boilerplate_code"><h2>Data classes without boilerplate code</h2><div class="paragraph"><p>Kotlin allows defining data classes very simply</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>data class Person(val firstName : String, val lastName : String)</code></pre></div></div>
+<div class="paragraph"><p>Constructors, getters, setters (if attributes are mutable), equals, hashCode and copy methods are generated by the compiler.</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val me = Person("Christophe", "Schreiber")
+println(me.firstName)</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>Christophe</pre></div></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val otherMe = Person("Christophe", "Schreiber")
+println(me == otherMe)</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>true</pre></div></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val notMe = me.copy(lastName = "Rebierhcs")
+println(notMe)</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>Person(firstName=Christophe, lastName=Rebierhcs)</pre></div></div></section>
+<section id="safe_casts"><h2>Safe casts</h2><div class="paragraph"><p>When you check if an instance is of a given type, Kotlin automatically converts to the correct type in case of success, avoiding a redundant cast.</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val value : Any = methodReturningAnyType()
+if (value is String) {
+	println(value.toUpperCase()
+}</code></pre></div></div>
+<div class="paragraph"><p>You can also directly cast using the as operator and specify a default value if the cast fails</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val value : Any = methodReturningAnyType()
+val stringValue : String? = value.as? String ?: null
+println(stringValue?.toUpperCase)</code></pre></div></div></section>
+<section id="using_lambdas"><h2>Using lambdas</h2><div class="paragraph"><p>Kotlin supports lambda expressions, with a syntax similar to Java 8</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val myList = listOf(1, 2, 3, 4, 5)
+val evenNumbers = myList.filter({value : Int -&gt; value % 2 == 0})</code></pre></div></div>
+<div class="paragraph"><p>You can simplify this line of code by ommiting parentheses and using type inference :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val evenNumbers = myList.filter {value -&gt; value % 2 == 0}</code></pre></div></div>
+<div class="paragraph"><p>And you can simplify it even further since it has only one parameter :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val evenNumbers = myList.filter {it % 2 == 0}</code></pre></div></div>
+<div class="paragraph"><p>Contrarily to Java, there is no specific type for functions, they are just defined by their signature
+For instance, if you want to apply a transformation to a String then print it in Java :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>public void transformAndPrint(String message, Function&lt;String, String&gt; transform) {
+   System.out.println(transform.apply(message));
+}</code></pre></div></div>
+<div class="paragraph"><p>The equivalent Kotlin method would be :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun transformAndPrint(message : String, transform : (String) -&gt; String) = println(transform(message))</code></pre></div></div></section>
+<section id="extension_functions"><h2>Extension functions</h2><div class="paragraph"><p>In Kotlin, you can add features to existing classes using the extension function mechanism :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun String.addBar() = this + "bar"
+println("foo".addBar())</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre> foobar
+The Kotlin standard library makes heavy use of extension functions over JDK classes.</pre></div></div></section>
+<section id="don_t_forget_about_oop"><h2>Don&#8217;t forget about OOP</h2></section>
+<section id="the_magic_switch_when"><h2>The magic switch : when</h2></section>
+<section id="conventions"><h2>Conventions</h2></section>
+<section id="making_recursion_great_again"><h2>Making recursion great again</h2><div class="paragraph"><p>Contrarily to Java, Kotlin allows using tail recursion optimization by using the <strong>tailrec</strong> keyword :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun Int.factorial() : BigDecimal {
+    if (this &lt; 0 ) throw IllegalArgumentException("Factorial can only be applied to strictly positive integers, ${this} is invalid")
+    return recursiveFactorial(BigDecimal(this), BigDecimal.ONE)
+}
+
+private tailrec fun recursiveFactorial(integer: BigDecimal, accumulator: BigDecimal): BigDecimal {
+    return when(integer) {
+        BigDecimal.ZERO -&gt; accumulator
+        else -&gt; recursiveFactorial(integer - BigDecimal.ONE, integer * accumulator)
+    }
+}
+
+println(100000.factorial())</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>2824229407960347874293421578024535518477494926[...]00000000000 (456574 digits !)</pre></div></div></section>
+<section id="and_many_more"><h2>And many more !</h2><div class="ulist"><ul><li><p>Lazy initialisation</p></li><li><p>Easy delegation</p></li><li><p>Infix methods</p></li><li><p>Domain specific language</p></li><li><p>&#8230;&#8203;</p></li></ul></div></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+Reveal.initialize({
+  // Display controls in the bottom right corner
+  controls: true,
+  // Display a presentation progress bar
+  progress: true,
+  // Set a per-slide timing for speaker notes, null means none
+  defaultTiming: null,
+  // Display the page number of the current slide
+  slideNumber: false,
+  // Push each slide change to the browser history
+  history: false,
+  // Enable keyboard shortcuts for navigation
+  keyboard: true,
+  // Enable the slide overview mode
+  overview: true,
+  // Vertical centering of slides
+  center: true,
+  // Enables touch navigation on devices with touch input
+  touch: true,
+  // Loop the presentation
+  loop: false,
+  // Change the presentation direction to be RTL
+  rtl: false,
+  // Randomizes the order of slides each time the presentation loads
+  shuffle: false,
+  // Turns fragments on and off globally
+  fragments: true,
+  // Flags if the presentation is running in an embedded mode,
+  // i.e. contained within a limited portion of the screen
+  embedded: false,
+  // Flags if we should show a help overlay when the questionmark
+  // key is pressed
+  help: true,
+  // Flags if speaker notes should be visible to all viewers
+  showNotes: false,
+  // Global override for autolaying embedded media (video/audio/iframe)
+  // - null: Media will only autoplay if data-autoplay is present
+  // - true: All media will autoplay, regardless of individual setting
+  // - false: No media will autoplay, regardless of individual setting
+  autoPlayMedia: null,
+  // Number of milliseconds between automatically proceeding to the
+  // next slide, disabled when set to 0, this value can be overwritten
+  // by using a data-autoslide attribute on your slides
+  autoSlide: 0,
+  // Stop auto-sliding after user input
+  autoSlideStoppable: true,
+  // Enable slide navigation via mouse wheel
+  mouseWheel: false,
+  // Hides the address bar on mobile devices
+  hideAddressBar: true,
+  // Opens links in an iframe preview overlay
+  previewLinks: false,
+  // Theme (e.g., beige, black, league, night, serif, simple, sky, solarized, white)
+  // NOTE setting the theme in the config no longer works in reveal.js 3.x
+  //theme: Reveal.getQueryHash().theme || 'black',
+  // Transition style (e.g., none, fade, slide, convex, concave, zoom)
+  transition: Reveal.getQueryHash().transition || 'slide',
+  // Transition speed (e.g., default, fast, slow)
+  transitionSpeed: 'default',
+  // Transition style for full page slide backgrounds (e.g., none, fade, slide, convex, concave, zoom)
+  backgroundTransition: 'fade',
+  // Number of slides away from the current that are visible
+  viewDistance: 3,
+  // Parallax background image (e.g., "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'")
+  parallaxBackgroundImage: '',
+  // Parallax background size in CSS syntax (e.g., "2100px 900px")
+  parallaxBackgroundSize: '',
+
+  // The "normal" size of the presentation, aspect ratio will be preserved
+  // when the presentation is scaled to fit different resolutions. Can be
+  // specified using percentage units.
+  width: 960,
+  height: 700,
+
+  // Factor of the display size that should remain empty around the content
+  margin: 0.1,
+
+  // Bounds for smallest/largest possible scale to apply to content
+  minScale: 0.2,
+  maxScale: 1.5,
+
+  // Optional libraries used to extend on reveal.js
+  dependencies: [
+      { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
+      { src: 'reveal.js/plugin/notes/notes.js', async: true }
+  ]
+});</script></body></html>
