@@ -14,7 +14,7 @@
 
 Java developer since 2005
 
-Member of Softeam's *Java Startech* image:startech-logo.png[width=150,link="images/startech-logo.png"]
+Member of Softeam's *Java Startech* image:startech-logo.png[Logo Startech]
 
 image:twitter.png[Twitter, 64, 64] https://twitter.com/Schreiber_Chris[@Schreiber_Chris]
 
@@ -42,6 +42,7 @@ image:github.png[Github, 64] https://github.com/ChristopheSchreiber[ChristopheSc
  * Native
  
 == Why is everybody talking about Kotlin ?
+[%step]
  * Because of Java 9 ? image:http://orig15.deviantart.net/d060/f/2012/154/f/5/troll_face_pixel_icon_by_rocketshipbabe-d5257wc.png[Trollface,32,32]
  * Because of its support in Android
  * Because it's good !
@@ -102,7 +103,7 @@ immutable = 4
  immutable = 4 +
  ^
 
-== String templates are awesome
+== Powerfull String templates
 Kotlin allows to user variables in String values using *${...}* syntax
 [source]
 ----
@@ -114,7 +115,8 @@ sayHello("Softeam")
 String templates can contain actual code
 [source]
 ----
-fun shoutHello(name : String) = println("Hello ${name.toUpperCase()} !")
+fun shoutHello(name : String) =
+    println("Hello ${name.toUpperCase()} !")
 shoutHello("Softeam")
 ----
  Hello SOFTEAM !
