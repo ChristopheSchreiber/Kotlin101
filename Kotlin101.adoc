@@ -166,12 +166,16 @@ val name : String? = null
 
 When using nullable types, the compiler forces you to check for null references
 ----
-val name : String? = functionThatMayReturnNullStringReference()
+val name : String? =
+    functionThatMayReturnNullStringReference()
 println(name.length)
 ----
- println(name.length)error: only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type String?
+ println(name.length)error: only safe (?.) or non-null asserted (!!.) calls are
+  allowed on a nullable receiver of type String?
  println(name.length)
              ^
+
+== !
 
 ----
 if (name != null) {
@@ -256,6 +260,8 @@ And you can simplify it even further since it has only one parameter :
 val evenNumbers = myList.filter {it % 2 == 0}
 ----
 
+== !
+
 Contrarily to Java, there is no specific type for functions, they are just defined by their signature
 For instance, if you want to apply a transformation to a String then print it in Java :
 ----
@@ -276,6 +282,7 @@ fun String.addBar() = this + "bar"
 println("foo".addBar())
 ----
  foobar
+
 The Kotlin standard library makes heavy use of extension functions over JDK classes.
 
 == Don't forget about OOP
@@ -285,7 +292,7 @@ interface OrderRepository {
 fun findOrder(identifier : Int) : Order
 ----
 
-== Implementing an interface or extending a class
+== !
 Kotlin makes no difference in the syntax when implementing an interface or extending a class.
 
 As in Java, a class can implement several interfaces but can extend only one class.
@@ -294,6 +301,9 @@ In order to be extendible, a class must be declared using the *open* keyword.
 open class Vehicle(...)
 class Car : Vehicle(...)
 ----
+
+== !
+
 You have to explicitly declare that you are overriding a method.
 ----
 class OracleOrderRepository : OrderRepository {
@@ -320,11 +330,12 @@ when (priceType) {
     RATE -> [...]
 }
 ----
- warning: 'when' expression on enum is recommended to be exhaustive, add 'PERCENTAGE' branch or 'else' branch instead
+ warning: 'when' expression on enum is recommended to be exhaustive,
+  add 'PERCENTAGE' branch or 'else' branch instead
  when (priceType) {
  ^
 
-=== Using when to assign values
+== Using when to assign values
 ----
 val code = getStringCode()
 val mappedCode = when (code) {
@@ -334,14 +345,15 @@ val mappedCode = when (code) {
 }
 ----
 
-=== Avoiding return repetition in if statements
+== Avoiding return repetition in if statements
 You can also use *when* as a return statement :
 ----
-fun isSmallList(list : List<String, maxSize : Int)
-return when {
+fun isSmallList(list: List<String>, maxSize: Int) : String {
+    return when {
         list.isEmpty() -> "Empty !"
         list.size <= maxSize -> "The size of the list is fine !"
         else -> "List is too big"
+    }
 }
 ----
 
@@ -349,7 +361,8 @@ return when {
 Conventions are special method names that can be called using operators
 ----
 data class Quantity(val value: BigDecimal) {
-   operator fun plus(other : Quantity) = Quantity(this.value + other.value)
+   operator fun plus(other : Quantity) =
+      Quantity(this.value + other.value)
 }
 val quantity1 = Quantity(100.0)
 val quantity2 = Quantity(10.0)
@@ -357,7 +370,7 @@ println(quantity1 + quantity2)
 ----
  Quantity(value=110.0)
 
-==!
+== !
 Kotlin defines several conventions:
 [%step]
 * arithmetic operators : plus, minus,  times,  div, mod
@@ -366,20 +379,21 @@ Kotlin defines several conventions:
 
 
 == Making recursion great again
-Contrarily to Java, Kotlin allows using tail recursion optimization by using the *tailrec* keyword :
+Kotlin allows using tail recursion optimization by using the *tailrec* keyword :
 ----
 fun Int.factorial() : BigDecimal {
     if (this < 0 ) throw IllegalArgumentException("Factorial can only be applied to positive integers, ${this} is invalid")
-    return recursiveFactorial(BigDecimal(this), BigDecimal.ONE)
+    return recursiveFactorial(BigDecimal(this),
+     BigDecimal.ONE)
 }
-
-private tailrec fun recursiveFactorial(integer: BigDecimal, accumulator: BigDecimal): BigDecimal {
+private tailrec fun recursiveFactorial(integer: BigDecimal,
+ accumulator: BigDecimal): BigDecimal {
     return when(integer) {
         BigDecimal.ZERO -> accumulator
-        else -> recursiveFactorial(integer - BigDecimal.ONE, integer * accumulator)
+        else -> recursiveFactorial(integer - BigDecimal.ONE,
+         integer * accumulator)
     }
 }
-
 println(100000.factorial())
 ----
  2824229407960347874293421578024535518477494926[...]00000000000 (456574 digits !)

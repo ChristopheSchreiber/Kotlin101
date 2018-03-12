@@ -38,7 +38,7 @@ println(mutable)</code></pre></div></div>
 <div class="literalblock"><div class="content"><pre>error: val cannot be reassigned +
 immutable = 4 +
 ^</pre></div></div></section>
-<section id="string_templates_are_awesome"><h2>String templates are awesome</h2><div class="paragraph"><p>Kotlin allows to user variables in String values using <strong>${&#8230;&#8203;}</strong> syntax</p></div>
+<section id="powerfull_string_templates"><h2>Powerfull String templates</h2><div class="paragraph"><p>Kotlin allows to user variables in String values using <strong>${&#8230;&#8203;}</strong> syntax</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun sayHello(name : String) = println("Hello ${name}")
 sayHello("Softeam")</code></pre></div></div>
 <div class="literalblock"><div class="content"><pre>Hello Softeam</pre></div></div>
@@ -48,13 +48,15 @@ sayHello("Softeam")</code></pre></div></div>
 shoutHello("Softeam")</code></pre></div></div>
 <div class="literalblock"><div class="content"><pre>Hello SOFTEAM !</pre></div></div></section>
 <section id="avoiding_overloaded_methods"><h2>Avoiding overloaded methods</h2><div class="paragraph"><p>Kotlin offers default parameter values, so that you don&#8217;t need to overload methods when you need an extra parameter.</p></div>
-<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun sayHello(name : String, message : String = "") = println("Hello ${name} ${message}")
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun sayHello(name : String, message : String = "") =
+    println("Hello ${name} ${message}")
 sayHello("World")</code></pre></div></div>
 <div class="literalblock"><div class="content"><pre>Hello World</pre></div></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>sayHello("World", ", Kotlin is great")</code></pre></div></div>
-<div class="literalblock"><div class="content"><pre>Hello World, Kotlin is great</pre></div></div>
-<div class="paragraph"><p>You can also explicitly add the parameter name in any method call.</p></div>
-<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>sayHello(message = ", do you enjoy Kotlin", name = "everybody")</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>Hello World, Kotlin is great</pre></div></div></section>
+<section><div class="paragraph"><p>You can also explicitly add the parameter name in any method call.</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>sayHello(message = ", do you enjoy Kotlin",
+ name = "everybody")</code></pre></div></div>
 <div class="literalblock"><div class="content"><pre>Hello everybody , do you enjoy Kotlin</pre></div></div></section>
 <section id="avoiding_the_billion_dollars_mistake"><h2>Avoiding the billion dollars mistake</h2><div class="paragraph"><p>Kotlin ensures that most cases of null references are detected by the compiler.</p></div>
 <div class="paragraph"><p>By default, all references are non nullable.</p></div>
@@ -64,18 +66,23 @@ val name : String = null</pre></div></div></section>
 <section id="usage_of_nullable_references"><h2>Usage of nullable references</h2><div class="paragraph"><p>Kotlin uses the ? character after the type definition to declare that a reference is nullable</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val name : String? = null</code></pre></div></div>
 <div class="paragraph"><p>When using nullable types, the compiler forces you to check for null references</p></div>
-<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val name : String? = functionThatMayReturnNullStringReference()
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val name : String? =
+    functionThatMayReturnNullStringReference()
 println(name.length)</code></pre></div></div>
-<div class="literalblock"><div class="content"><pre>println(name.length)error: only safe (?.) or non-null asserted (!!.) calls are allowed on a nullable receiver of type String?
+<div class="literalblock"><div class="content"><pre>println(name.length)error: only safe (?.) or non-null asserted (!!.) calls are
+ allowed on a nullable receiver of type String?
 println(name.length)
-            ^</pre></div></div>
-<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>if (name != null) {
+            ^</pre></div></div></section>
+<section><div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>if (name != null) {
    println(name.length)
 }</code></pre></div></div>
 <div class="paragraph"><p>Kotlin defines a shorter way to check null reference :</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>println(name?.length)</code></pre></div></div>
 <div class="paragraph"><p>And the Elvis operator allows usage of a default value otherwise :</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>println(name?.length ?: 0)</code></pre></div></div></section>
+<section id="public_visibility_by_default"><h2>Public visibility by default</h2><div class="paragraph"><p>In Kotlin, default visibility is public, not package-private like in Java.
+Kotlin has 4 visibilities:</p></div>
+<div class="ulist"><ul><li class="fragment"><p><strong>public</strong> (default)</p></li><li class="fragment"><p><strong>private</strong></p></li><li class="fragment"><p><strong>protected</strong></p></li><li class="fragment"><p><strong>internal</strong> (only visible in your module)</p></li></ul></div></section>
 <section id="data_classes_without_boilerplate_code"><h2>Data classes without boilerplate code</h2><div class="paragraph"><p>Kotlin allows defining data classes very simply</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>data class Person(val firstName : String, val lastName : String)</code></pre></div></div>
 <div class="paragraph"><p>Constructors, getters, setters (if attributes are mutable), equals, hashCode and copy methods are generated by the compiler.</p></div>
@@ -91,50 +98,102 @@ println(notMe)</code></pre></div></div>
 <section id="safe_casts"><h2>Safe casts</h2><div class="paragraph"><p>When you check if an instance is of a given type, Kotlin automatically converts to the correct type in case of success, avoiding a redundant cast.</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val value : Any = methodReturningAnyType()
 if (value is String) {
-	println(value.toUpperCase()
+	println(value.toUpperCase())
 }</code></pre></div></div>
 <div class="paragraph"><p>You can also directly cast using the as operator and specify a default value if the cast fails</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val value : Any = methodReturningAnyType()
-val stringValue : String? = value.as? String ?: null
-println(stringValue?.toUpperCase)</code></pre></div></div></section>
+val stringValue : String = value as? String ?: "not a String"
+println(stringValue.toUpperCase())</code></pre></div></div></section>
 <section id="using_lambdas"><h2>Using lambdas</h2><div class="paragraph"><p>Kotlin supports lambda expressions, with a syntax similar to Java 8</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val myList = listOf(1, 2, 3, 4, 5)
 val evenNumbers = myList.filter({value : Int -&gt; value % 2 == 0})</code></pre></div></div>
 <div class="paragraph"><p>You can simplify this line of code by ommiting parentheses and using type inference :</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val evenNumbers = myList.filter {value -&gt; value % 2 == 0}</code></pre></div></div>
 <div class="paragraph"><p>And you can simplify it even further since it has only one parameter :</p></div>
-<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val evenNumbers = myList.filter {it % 2 == 0}</code></pre></div></div>
-<div class="paragraph"><p>Contrarily to Java, there is no specific type for functions, they are just defined by their signature
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val evenNumbers = myList.filter {it % 2 == 0}</code></pre></div></div></section>
+<section><div class="paragraph"><p>Contrarily to Java, there is no specific type for functions, they are just defined by their signature
 For instance, if you want to apply a transformation to a String then print it in Java :</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>public void transformAndPrint(String message, Function&lt;String, String&gt; transform) {
    System.out.println(transform.apply(message));
 }</code></pre></div></div>
 <div class="paragraph"><p>The equivalent Kotlin method would be :</p></div>
-<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun transformAndPrint(message : String, transform : (String) -&gt; String) = println(transform(message))</code></pre></div></div></section>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun transformAndPrint(message : String,
+ transform : (String) -&gt; String) = println(transform(message))</code></pre></div></div></section>
 <section id="extension_functions"><h2>Extension functions</h2><div class="paragraph"><p>In Kotlin, you can add features to existing classes using the extension function mechanism :</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun String.addBar() = this + "bar"
 println("foo".addBar())</code></pre></div></div>
-<div class="literalblock"><div class="content"><pre> foobar
-The Kotlin standard library makes heavy use of extension functions over JDK classes.</pre></div></div></section>
-<section id="don_t_forget_about_oop"><h2>Don&#8217;t forget about OOP</h2></section>
-<section id="the_magic_switch_when"><h2>The magic switch : when</h2></section>
-<section id="conventions"><h2>Conventions</h2></section>
-<section id="making_recursion_great_again"><h2>Making recursion great again</h2><div class="paragraph"><p>Contrarily to Java, Kotlin allows using tail recursion optimization by using the <strong>tailrec</strong> keyword :</p></div>
-<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun Int.factorial() : BigDecimal {
-    if (this &lt; 0 ) throw IllegalArgumentException("Factorial can only be applied to strictly positive integers, ${this} is invalid")
-    return recursiveFactorial(BigDecimal(this), BigDecimal.ONE)
+<div class="literalblock"><div class="content"><pre>foobar</pre></div></div>
+<div class="paragraph"><p>The Kotlin standard library makes heavy use of extension functions over JDK classes.</p></div></section>
+<section id="don_t_forget_about_oop"><h2>Don&#8217;t forget about OOP</h2><div class="paragraph"><p>Interfaces are similar to Java : they can contain default implementations but no state</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>interface OrderRepository {
+fun findOrder(identifier : Int) : Order</code></pre></div></div></section>
+<section><div class="paragraph"><p>Kotlin makes no difference in the syntax when implementing an interface or extending a class.</p></div>
+<div class="paragraph"><p>As in Java, a class can implement several interfaces but can extend only one class.
+In order to be extendible, a class must be declared using the <strong>open</strong> keyword.</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>open class Vehicle(...)
+class Car : Vehicle(...)</code></pre></div></div></section>
+<section><div class="paragraph"><p>You have to explicitly declare that you are overriding a method.</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>class OracleOrderRepository : OrderRepository {
+    override fun findOrder(identifier : Int) : Order  = [...]
+}</code></pre></div></div></section>
+<section id="declaring_enumerated_types"><h2>Declaring enumerated types</h2><div class="paragraph"><p>Kotlin enums are very similar to Java&#8217;s :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>enum class PriceType {
+    PIECE, RATE, PERCENTAGE
+}</code></pre></div></div></section>
+<section id="the_magic_switch_when"><h2>The magic switch : when</h2><div class="paragraph"><p>The <strong>when</strong> operator can be used in several ways.</p></div>
+<div class="paragraph"><p>With enums, it allows checking that all possible values are covered:</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val priceType = price.type
+when (priceType) {
+    PIECE -&gt; [...]
+    RATE -&gt; [...]
+}</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>warning: 'when' expression on enum is recommended to be exhaustive,
+ add 'PERCENTAGE' branch or 'else' branch instead
+when (priceType) {
+^</pre></div></div></section>
+<section id="using_when_to_assign_values"><h2>Using when to assign values</h2><div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val code = getStringCode()
+val mappedCode = when (code) {
+   "foo" -&gt; doFoo()
+   "bar" -&gt; doBar()
+   else -&gt; doSomethingElse()
+}</code></pre></div></div></section>
+<section id="avoiding_return_repetition_in_if_statements"><h2>Avoiding return repetition in if statements</h2><div class="paragraph"><p>You can also use <strong>when</strong> as a return statement :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun isSmallList(list: List&lt;String&gt;, maxSize: Int) : String {
+    return when {
+        list.isEmpty() -&gt; "Empty !"
+        list.size &lt;= maxSize -&gt; "The size of the list is fine !"
+        else -&gt; "List is too big"
+    }
+}</code></pre></div></div></section>
+<section id="conventions"><h2>Conventions</h2><div class="paragraph"><p>Conventions are special method names that can be called using operators</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>data class Quantity(val value: BigDecimal) {
+   operator fun plus(other : Quantity) =
+      Quantity(this.value + other.value)
 }
-
-private tailrec fun recursiveFactorial(integer: BigDecimal, accumulator: BigDecimal): BigDecimal {
+val quantity1 = Quantity(100.0)
+val quantity2 = Quantity(10.0)
+println(quantity1 + quantity2)</code></pre></div></div>
+<div class="literalblock"><div class="content"><pre>Quantity(value=110.0)</pre></div></div></section>
+<section><div class="paragraph"><p>Kotlin defines several conventions:</p></div>
+<div class="ulist"><ul><li class="fragment"><p>arithmetic operators : plus, minus,  times,  div, mod</p></li><li class="fragment"><p>arithmetic operators with assignment : plusAssign, minusAssign&#8230;&#8203;</p></li><li class="fragment"><p>comparison operators: equals, compareTo</p></li></ul></div></section>
+<section id="making_recursion_great_again"><h2>Making recursion great again</h2><div class="paragraph"><p>Kotlin allows using tail recursion optimization by using the <strong>tailrec</strong> keyword :</p></div>
+<div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun Int.factorial() : BigDecimal {
+    if (this &lt; 0 ) throw IllegalArgumentException("Factorial can only be applied to positive integers, ${this} is invalid")
+    return recursiveFactorial(BigDecimal(this),
+     BigDecimal.ONE)
+}
+private tailrec fun recursiveFactorial(integer: BigDecimal,
+ accumulator: BigDecimal): BigDecimal {
     return when(integer) {
         BigDecimal.ZERO -&gt; accumulator
-        else -&gt; recursiveFactorial(integer - BigDecimal.ONE, integer * accumulator)
+        else -&gt; recursiveFactorial(integer - BigDecimal.ONE,
+         integer * accumulator)
     }
 }
-
 println(100000.factorial())</code></pre></div></div>
 <div class="literalblock"><div class="content"><pre>2824229407960347874293421578024535518477494926[...]00000000000 (456574 digits !)</pre></div></div></section>
-<section id="and_many_more"><h2>And many more !</h2><div class="ulist"><ul><li><p>Lazy initialisation</p></li><li><p>Easy delegation</p></li><li><p>Infix methods</p></li><li><p>Domain specific language</p></li><li><p>&#8230;&#8203;</p></li></ul></div></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
+<section id="and_many_more"><h2>And many more !</h2><div class="ulist"><ul><li><p>Lazy initialisation</p></li><li><p>Easy delegation</p></li><li><p>Infix methods</p></li><li><p>Domain specific language</p></li><li><p>&#8230;&#8203;</p></li></ul></div></section>
+<section id="questions"><h2>Questions ?</h2></section></div></div><script src="reveal.js/lib/js/head.min.js"></script><script src="reveal.js/js/reveal.js"></script><script>// See https://github.com/hakimel/reveal.js#configuration for a full list of configuration options
 Reveal.initialize({
   // Display controls in the bottom right corner
   controls: true,
