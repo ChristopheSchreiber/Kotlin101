@@ -289,7 +289,11 @@ fun findOrder(identifier : Int) : Order
 Kotlin makes no difference in the syntax when implementing an interface or extending a class.
 
 As in Java, a class can implement several interfaces but can extend only one class.
-
+In order to be extendible, a class must be declared using the *open* keyword.
+----
+open class Vehicle(...)
+class Car : Vehicle(...)
+----
 You have to explicitly declare that you are overriding a method.
 ----
 class OracleOrderRepository : OrderRepository {
