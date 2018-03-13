@@ -14,7 +14,7 @@
 
 Java developer since 2005
 
-Member of Softeam's *Java Startech* image:startech-logo.png[width=150,link="images/startech-logo.png"]
+Member of Softeam's *Java Startech* image:startech-logo.png[Logo Startech]
 
 image:twitter.png[Twitter, 64, 64] https://twitter.com/Schreiber_Chris[@Schreiber_Chris]
 
@@ -42,6 +42,7 @@ image:github.png[Github, 64] https://github.com/ChristopheSchreiber[ChristopheSc
  * Native
  
 == Why is everybody talking about Kotlin ?
+[%step]
  * Because of Java 9 ? image:http://orig15.deviantart.net/d060/f/2012/154/f/5/troll_face_pixel_icon_by_rocketshipbabe-d5257wc.png[Trollface,32,32]
  * Because of its support in Android
  * Because it's good !
@@ -102,7 +103,7 @@ immutable = 4
  immutable = 4 +
  ^
 
-== String templates are awesome
+== Powerfull String templates
 Kotlin allows to user variables in String values using *${...}* syntax
 [source]
 ----
@@ -125,7 +126,8 @@ shoutHello("Softeam")
 
 Kotlin offers default parameter values, so that you don't need to overload methods when you need an extra parameter.
 ----
-fun sayHello(name : String, message : String = "") = println("Hello ${name} ${message}")
+fun sayHello(name : String, message : String = "") =
+    println("Hello ${name} ${message}")
 sayHello("World")
 ----
  Hello World
@@ -165,13 +167,17 @@ val name : String? = null
 == !
 When using nullable types, the compiler forces you to check for null references
 ----
-val name : String? = functionThatMayReturnNullStringReference()
+val name : String? =
+    functionThatMayReturnNullStringReference()
 println(name.length)
 ----
- println(name.length)error: only safe (?.) or non-null asserted (!!.) calls are allowed on
-  a nullable receiver of type String?
+ println(name.length)error: only safe (?.) or non-null asserted (!!.) calls are
+  allowed on a nullable receiver of type String?
  println(name.length)
              ^
+
+== !
+
 ----
 if (name != null) {
    println(name.length)
@@ -230,15 +236,15 @@ When you check if an instance is of a given type, Kotlin automatically converts 
 ----
 val value : Any = methodReturningAnyType()
 if (value is String) {
-	println(value.toUpperCase()
+	println(value.toUpperCase())
 }
 ----
 
 You can also directly cast using the as operator and specify a default value if the cast fails
 ----
 val value : Any = methodReturningAnyType()
-val stringValue : String? = value.as? String ?: null
-println(stringValue?.toUpperCase)
+val stringValue : String = value as? String ?: "not a String"
+println(stringValue.toUpperCase())
 ----
 
 == Using lambdas
@@ -258,6 +264,8 @@ And you can simplify it even further since it has only one parameter :
 val evenNumbers = myList.filter {it % 2 == 0}
 ----
 
+== !
+
 Contrarily to Java, there is no specific type for functions, they are just defined by their signature
 For instance, if you want to apply a transformation to a String then print it in Java :
 ----
@@ -267,7 +275,8 @@ public void transformAndPrint(String message, Function<String, String> transform
 ----
 The equivalent Kotlin method would be :
 ----
-fun transformAndPrint(message : String, transform : (String) -> String) = println(transform(message))
+fun transformAndPrint(message : String,
+ transform : (String) -> String) = println(transform(message))
 ----
 
 == Extension functions
@@ -277,6 +286,7 @@ fun String.addBar() = this + "bar"
 println("foo".addBar())
 ----
  foobar
+
 The Kotlin standard library makes heavy use of extension functions over JDK classes.
 
 == Don't forget about OOP
@@ -286,12 +296,19 @@ interface OrderRepository {
 fun findOrder(identifier : Int) : Order
 ----
 
-== Implementing an interface or extending a class
+== !
 Kotlin makes no difference in the syntax when implementing an interface or extending a class.
 
 As in Java, a class can implement several interfaces but can extend only one class.
+In order to be extendible, a class must be declared using the *open* keyword.
+----
+open class Vehicle(...)
+class Car : Vehicle(...)
+----
 
-You have to explictly declare that you are overriding a method.
+== !
+
+You have to explicitly declare that you are overriding a method.
 ----
 class OracleOrderRepository : OrderRepository {
     override fun findOrder(identifier : Int) : Order  = [...]
@@ -317,27 +334,30 @@ when (priceType) {
     RATE -> [...]
 }
 ----
-TODO: ERROR
+ warning: 'when' expression on enum is recommended to be exhaustive,
+  add 'PERCENTAGE' branch or 'else' branch instead
+ when (priceType) {
+ ^
 
-== !
-You can use *when* to check values on objects
+== Using when to assign values
 ----
 val code = getStringCode()
-when (code) {
+val mappedCode = when (code) {
    "foo" -> doFoo()
    "bar" -> doBar()
    else -> doSomethingElse()
 }
 ----
 
-== !
+== Avoiding return repetition in if statements
 You can also use *when* as a return statement :
 ----
-fun isSmallList(list : List<String, maxSize : Int)
-return when {
+fun isSmallList(list: List<String>, maxSize: Int) : String {
+    return when {
         list.isEmpty() -> "Empty !"
         list.size <= maxSize -> "The size of the list is fine !"
         else -> "List is too big"
+    }
 }
 ----
 
@@ -346,7 +366,7 @@ Conventions are special method names that can be called using operators
 ----
 data class Quantity(val value: BigDecimal) {
    operator fun plus(other : Quantity) =
-       Quantity(this.value + other.value)
+      Quantity(this.value + other.value)
 }
 val quantity1 = Quantity(100.0)
 val quantity2 = Quantity(10.0)
@@ -363,20 +383,21 @@ Kotlin defines several conventions:
 
 
 == Making recursion great again
-Contrarily to Java, Kotlin allows using tail recursion optimization by using the *tailrec* keyword :
+Kotlin allows using tail recursion optimization by using the *tailrec* keyword :
 ----
 fun Int.factorial() : BigDecimal {
-    if (this < 0 ) throw IllegalArgumentException("Factorial can only be applied to strictly positive integers, ${this} is invalid")
-    return recursiveFactorial(BigDecimal(this), BigDecimal.ONE)
+    if (this < 0 ) throw IllegalArgumentException("Factorial can only be applied to positive integers, ${this} is invalid")
+    return recursiveFactorial(BigDecimal(this),
+     BigDecimal.ONE)
 }
-
-private tailrec fun recursiveFactorial(integer: BigDecimal, accumulator: BigDecimal): BigDecimal {
+private tailrec fun recursiveFactorial(integer: BigDecimal,
+ accumulator: BigDecimal): BigDecimal {
     return when(integer) {
         BigDecimal.ZERO -> accumulator
-        else -> recursiveFactorial(integer - BigDecimal.ONE, integer * accumulator)
+        else -> recursiveFactorial(integer - BigDecimal.ONE,
+         integer * accumulator)
     }
 }
-
 println(100000.factorial())
 ----
  2824229407960347874293421578024535518477494926[...]00000000000 (456574 digits !)
@@ -388,3 +409,5 @@ println(100000.factorial())
  * Infix methods
  * Domain specific language
  * ...
+
+== Questions ?
