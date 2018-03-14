@@ -84,7 +84,7 @@ val sb = StringBuilder()
 ----
 
 == Can my variable change ?
-Kotlin enforces you to specify if variables are final or not by using either val (value) or var (variable)
+Kotlin enforces you to specify if variables are final or not by using either *val* (value) or *var* (variable)
 ----
 val immutable = 1
 var mutable = 2
@@ -104,7 +104,7 @@ immutable = 4
  ^
 
 == Powerfull String templates
-Kotlin allows to user variables in String values using *${...}* syntax
+Kotlin allows to use variables in String values using *${...}* syntax
 [source]
 ----
 fun sayHello(name : String) = println("Hello ${name}")
@@ -159,7 +159,7 @@ val name : String = null
 
 == Usage of nullable references
 
-Kotlin uses the ? character after the type definition to declare that a reference is nullable
+Kotlin uses the *?* character after the type definition to declare that a reference is nullable
 ----
 val name : String? = null
 ----
@@ -183,8 +183,6 @@ if (name != null) {
    println(name.length)
 }
 ----
-
-== !
 Kotlin defines a shorter way to check null reference :
 ----
 println(name?.length)
@@ -240,7 +238,7 @@ if (value is String) {
 }
 ----
 
-You can also directly cast using the as operator and specify a default value if the cast fails
+You can also directly cast using the *as* operator and specify a default value if the cast fails
 ----
 val value : Any = methodReturningAnyType()
 val stringValue : String = value as? String ?: "not a String"

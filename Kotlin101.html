@@ -26,7 +26,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );</script><!--[if 
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>StringBuilder sb = new StringBuilder()</code></pre></div></div>
 <div class="paragraph"><p>Kotlin version is simpler, because type is infered and the new keyword is not necessary</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val sb = StringBuilder()</code></pre></div></div></section>
-<section id="can_my_variable_change"><h2>Can my variable change ?</h2><div class="paragraph"><p>Kotlin enforces you to specify if variables are final or not by using either val (value) or var (variable)</p></div>
+<section id="can_my_variable_change"><h2>Can my variable change ?</h2><div class="paragraph"><p>Kotlin enforces you to specify if variables are final or not by using either <strong>val</strong> (value) or <strong>var</strong> (variable)</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val immutable = 1
 var mutable = 2
 println(mutable)</code></pre></div></div>
@@ -38,7 +38,7 @@ println(mutable)</code></pre></div></div>
 <div class="literalblock"><div class="content"><pre>error: val cannot be reassigned +
 immutable = 4 +
 ^</pre></div></div></section>
-<section id="powerfull_string_templates"><h2>Powerfull String templates</h2><div class="paragraph"><p>Kotlin allows to user variables in String values using <strong>${&#8230;&#8203;}</strong> syntax</p></div>
+<section id="powerfull_string_templates"><h2>Powerfull String templates</h2><div class="paragraph"><p>Kotlin allows to use variables in String values using <strong>${&#8230;&#8203;}</strong> syntax</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>fun sayHello(name : String) = println("Hello ${name}")
 sayHello("Softeam")</code></pre></div></div>
 <div class="literalblock"><div class="content"><pre>Hello Softeam</pre></div></div>
@@ -63,7 +63,7 @@ sayHello("World")</code></pre></div></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val name : String = null</code></pre></div></div>
 <div class="literalblock"><div class="content"><pre>error: null can not be a value of a non-null type String +
 val name : String = null</pre></div></div></section>
-<section id="usage_of_nullable_references"><h2>Usage of nullable references</h2><div class="paragraph"><p>Kotlin uses the ? character after the type definition to declare that a reference is nullable</p></div>
+<section id="usage_of_nullable_references"><h2>Usage of nullable references</h2><div class="paragraph"><p>Kotlin uses the <strong>?</strong> character after the type definition to declare that a reference is nullable</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val name : String? = null</code></pre></div></div></section>
 <section><div class="paragraph"><p>When using nullable types, the compiler forces you to check for null references</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val name : String? =
@@ -75,8 +75,8 @@ println(name.length)
             ^</pre></div></div></section>
 <section><div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>if (name != null) {
    println(name.length)
-}</code></pre></div></div></section>
-<section><div class="paragraph"><p>Kotlin defines a shorter way to check null reference :</p></div>
+}</code></pre></div></div>
+<div class="paragraph"><p>Kotlin defines a shorter way to check null reference :</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>println(name?.length)</code></pre></div></div>
 <div class="paragraph"><p>And the Elvis operator allows usage of a default value otherwise :</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>println(name?.length ?: 0)</code></pre></div></div></section>
@@ -101,7 +101,7 @@ println(notMe)</code></pre></div></div>
 if (value is String) {
 	println(value.toUpperCase())
 }</code></pre></div></div>
-<div class="paragraph"><p>You can also directly cast using the as operator and specify a default value if the cast fails</p></div>
+<div class="paragraph"><p>You can also directly cast using the <strong>as</strong> operator and specify a default value if the cast fails</p></div>
 <div class="listingblock"><div class="content"><pre class="highlight"><code data-noescape>val value : Any = methodReturningAnyType()
 val stringValue : String = value as? String ?: "not a String"
 println(stringValue.toUpperCase())</code></pre></div></div></section>
