@@ -1,4 +1,4 @@
-= Kotlin 101 for Java developers
+= Introduction to Kotlin for Java developers
 // classic AsciiDoctor attributes
 :icons: font
 :imagesdir: images
@@ -252,7 +252,7 @@ println(stringValue.toUpperCase())
 Kotlin supports lambda expressions, with a syntax similar to Java 8
 ----
 val myList = listOf(1, 2, 3, 4, 5)
-val evenNumbers = myList.filter({value : Int -> value % 2 == 0})
+val evens = myList.filter({value : Int -> value % 2 == 0})
 ----
 You can simplify this line of code by ommiting parentheses and using type inference :
 ----
@@ -269,7 +269,8 @@ val evenNumbers = myList.filter {it % 2 == 0}
 Contrarily to Java, there is no specific type for functions, they are just defined by their signature
 For instance, if you want to apply a transformation to a String then print it in Java :
 ----
-public void transformAndPrint(String message, Function<String, String> transform) {
+public void transformAndPrint(String message,
+ Function<String, String> transform) {
    System.out.println(transform.apply(message));
 }
 ----
